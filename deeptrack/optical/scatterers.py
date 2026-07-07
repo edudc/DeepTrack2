@@ -1770,16 +1770,22 @@ class MieScatterer(FieldScatterer):
         if isinstance(output_polarization, Quantity):
             output_polarization = output_polarization.to("rad").magnitude
 
-        output_polarization = _asarray(
-            output_polarization,
-            dtype=xp.float64,
-        )
-        S1_coef = S1_coef * xp.sin(phi + output_polarization)
-        S2_coef = (
-            S2_coef
-            * xp.cos(phi + output_polarization)
-            * illumination_cos_theta
-        )
+        if isinstance(output_polarization, str):
+            if output_polarization != "circular":
+                raise TypeError(
+                    f"Unsupported output_polarization: {output_polarization}"
+                )
+        else:
+            output_polarization = _asarray(
+                output_polarization,
+                dtype=xp.float64,
+            )
+            S1_coef = S1_coef * xp.sin(phi + output_polarization)
+            S2_coef = (
+                S2_coef
+                * xp.cos(phi + output_polarization)
+                * illumination_cos_theta
+            )
 
         return S1_coef, S2_coef
 
