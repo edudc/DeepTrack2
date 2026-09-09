@@ -53,6 +53,9 @@ python -m pip install deeptrack
 ```
 This will automatically install the required dependencies.
 
+For optional read-only API discovery from coding agents, see the
+[DeepTrack2 repository MCP server](MCP.md).
+
 # Getting Started
 
 Here you find a series of notebooks providing an overview of the core features of DeepTrack2 and how to use them:

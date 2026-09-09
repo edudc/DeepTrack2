@@ -35,4 +35,12 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.9",
+    extras_require={
+        "mcp": ["mcp[cli]>=2.0,<3"],
+    },
+    entry_points={
+        "console_scripts": [
+            "deeptrack-mcp=deeptrack.mcp_server:main",
+        ],
+    },
 )
